@@ -35,3 +35,7 @@ func (user *User) CheckPassword(password string) bool {
 func (User) TableName() string {
 	return "user"
 }
+
+func (user *User) GetUserModelByUsername(username string) (tx *gorm.DB) {
+	return Db.Where("username = ?", username)
+}
