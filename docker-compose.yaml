@@ -2,6 +2,7 @@ version: '3'
 services:
   etcd:
     image: quay.io/coreos/etcd:latest
+    container_name: etcd
     command: >
       /usr/local/bin/etcd
       --name my-etcd
@@ -12,7 +13,16 @@ services:
       --initial-cluster my-etcd=http://0.0.0.0:2380
     ports:
       - "2379:2379"
-      - "2380:2380"
+    networks:
+      - flyserver
+
+  etcd-keeper:
+    image: evildecay/etcdkeeper:latest
+    container_name: etcd-keeper
+    ports:
+      - "61002:8080"
+    environment:
+      - ETCD_SERVERS http://etcd:2379
     networks:
       - flyserver
 
