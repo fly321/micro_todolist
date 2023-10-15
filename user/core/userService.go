@@ -45,7 +45,7 @@ func (us UserService) UserRegister(ctx ct.Context, req *promos.UserRequest, resp
 	var user model.User
 	resp.Code = 200
 	var count int64 = 0
-	if err := user.GetUserModelByUsername(req.UserName).Count(&count).Error; err != nil {
+	if err := model.Db.Model(&model.User{}).Where("user_name=?", req.UserName).Count(&count).Error; err != nil {
 		resp.Code = 500
 		return err
 	}
