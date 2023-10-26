@@ -1,4 +1,5 @@
 .idea
 user/config/config.ini
 user/go.sum
+mq-server/go.sum
 api-gategay/go.sum

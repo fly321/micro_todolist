@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	config "mq-server/conf"
 	"os"
 	"time"
@@ -21,7 +22,7 @@ func InitDb() {
 	if err != nil {
 		panic("数据库连接失败，请检查配置信息")
 	}
-
+	logger.Default.LogMode(logger.Info)
 	sqlDB, err := db.DB()
 	sqlDB.SetMaxIdleConns(dbConfig.MaxIdleConns)
 	sqlDB.SetMaxOpenConns(dbConfig.MaxOpenConns)

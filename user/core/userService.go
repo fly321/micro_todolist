@@ -37,7 +37,7 @@ func (us *UserService) UserLogin(ctx ct.Context, req *promos.UserRequest, resp *
 	return nil
 }
 
-func (us UserService) UserRegister(ctx ct.Context, req *promos.UserRequest, resp *promos.UserDetailResponse) error {
+func (us *UserService) UserRegister(ctx ct.Context, req *promos.UserRequest, resp *promos.UserDetailResponse) error {
 	if req.PasswordConfirm != req.Password {
 		err := errors.New("两次密码不一致")
 		return err

@@ -26,6 +26,21 @@ services:
     networks:
       - flyserver
 
+  project:
+    image: golang:1.19
+    container_name: project
+    build:
+        context: .
+        dockerfile: Dockerfile
+    working_dir: /go/src/project
+    volumes:
+      - .:/go/src/project
+    ports:
+      - "61001:8080"
+    networks:
+      - flyserver
+    tty: true
+
 networks:
   flyserver:
     driver: bridge
